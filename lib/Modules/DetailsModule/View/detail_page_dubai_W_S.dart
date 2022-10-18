@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:internship_task/Modules/HomeModule/Model/duration_tiles.dart';
-import 'package:internship_task/Modules/HomeModule/View/Components/custom_cont.dart';
+import 'package:internship_task/Modules/ListingModules/View/listing_page.dart';
+// import 'package:internship_task/Modules/HomeModule/Model/duration_tiles.dart';
+// import 'package:internship_task/Modules/HomeModule/View/Components/custom_cont.dart';
 import 'package:internship_task/Modules/Utils/custom_btn.dart';
 import 'package:internship_task/Modules/Utils/custom_txt.dart';
-class DubaiWatersports extends StatefulWidget {
 
-  DubaiWatersports({Key? key,}) : super(key: key);
+// import '../../HomeModule/Model/duration_tiles.dart';
+// import '../../HomeModule/Model/duration_tiles.dart';
+import '../Model/duration_tiles.dart';
+import 'Components/custom_cont.dart';
+class DetailPage extends StatefulWidget {
 
+  DetailPage({Key? key,required this.img,required this.name}) : super(key: key);
+String img;
+String name;
   @override
-  State<DubaiWatersports> createState() => _DubaiWatersportsState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
-class _DubaiWatersportsState extends State<DubaiWatersports> {
+class _DetailPageState extends State<DetailPage> {
   List<DurationView> data =[
     DurationView(txt: "30 mins",),
     DurationView(txt: "35 mins",),
@@ -80,7 +87,7 @@ icon: Icons.send_rounded,
         ),
         ClipRRect(
           borderRadius: BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight: Radius.circular(30)),
-          child: Image.asset("assets/images/darkc.webp"),
+          child: Image.asset(widget.img),
         ),
 Positioned(
   top: 30,
@@ -91,7 +98,16 @@ Positioned(
 
     clr:Colors.white,
 
-    chld:Icon(Icons.arrow_back) , borderradius:BorderRadius.circular(25),),
+    chld:InkWell(
+        onTap: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>  ListingPage()),
+
+          );
+        },
+        child: Icon(Icons.arrow_back)) , borderradius:BorderRadius.circular(30),),
 ),
         Positioned(
           top: 30,
@@ -102,7 +118,9 @@ Positioned(
 
             clr:Colors.white,
 
-            chld:Icon(Icons.heart_broken) , borderradius:BorderRadius.circular(25),),
+            chld:InkWell(
+                onTap: (){},
+                child:Image.asset("assets/images/redheart1.png")) , borderradius:BorderRadius.circular(25),),
         ),
         Positioned(
           bottom: 100,
@@ -128,7 +146,7 @@ Positioned(
                 children: [
 
                   Row(children: [
-                    CustomTxt(txt: "Dhow Cruise", clr:Colors.black, size: 17, fnt_wght:FontWeight.bold),
+                    CustomTxt(txt: widget.name, clr:Colors.black, size: 17, fnt_wght:FontWeight.bold),
 Spacer(),
                    CustomContainer(hight: MediaQuery.of(context).size.height*.040,
                        width: MediaQuery.of(context).size.width*.17,
@@ -261,7 +279,7 @@ SizedBox(height: 5,),
                   CustomTxt(txt: "Overview", clr:Colors.black, size: 17, fnt_wght:FontWeight.bold),
                   SizedBox(height: 20,),
                   Container(
-                    padding: EdgeInsets.only(left: 20,right: 20),
+                    padding: EdgeInsets.only(left: 10,right: 10),
                     height: MediaQuery.of(context).size.height*.07,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -275,15 +293,15 @@ SizedBox(height: 5,),
                       Image.asset("assets/images/astar.png",height: 20,width: 20,),
                       SizedBox(width: 5,),
                       CustomTxt(txt: "Rating", clr:Colors.black, size:14, fnt_wght: FontWeight.normal),
-                      SizedBox(width: 30,),
+                      SizedBox(width: 20,),
                       Image.asset("assets/images/speed.jpg",height: 40,width: 40,),
                       SizedBox(width: 20,),
                       Text("${_liked}"),
-                      SizedBox(width: 10,),
+                      SizedBox(width: 5,),
                       InkWell(
                           onTap:_increas ,
                           child: Image.asset("assets/images/fav.jpg",height: 40,width: 40,)),
-                      SizedBox(width: 5,),
+                      SizedBox(width: 0,),
                       CustomTxt(txt: "Like", clr:Colors.black, size:14, fnt_wght: FontWeight.normal),
 
 
@@ -298,12 +316,12 @@ SizedBox(height: 5,),
         ),
         Positioned(
           bottom: 100,
-          right: 35,
+          right: 25,
           child: InkWell(
            onTap: (){},
             child: Container(
-              height: 60,
-              width: 60,
+              height: 55,
+              width: 55,
               decoration: BoxDecoration(color: Colors.teal[800],
                 borderRadius: BorderRadius.circular(40),
 

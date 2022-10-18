@@ -10,6 +10,7 @@ final borderradius;
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 3,left:3),
       height: hight,
       width:width,
       child: chld,

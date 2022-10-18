@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:internship_task/Modules/AuthModule/View/Components/custo_textformfied.dart';
-import 'package:internship_task/Modules/HomeModule/View/detail_page_dubai_W_S.dart';
+import 'package:internship_task/Modules/AuthModule/View/Components/custom_textformfied.dart';
+import 'package:internship_task/Modules/ListingModules/View/listing_page.dart';
+// import 'package:internship_task/Modules/HomeModule/View/detail_page_dubai_W_S.dart';
 import 'package:internship_task/Modules/Utils/custom_btn.dart';
 import 'package:internship_task/Modules/Utils/custom_txt.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../DetailsModule/View/detail_page_dubai_W_S.dart';
 class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+  LoginView({Key? key}) : super(key: key);
+TextEditingController emailcontroller= TextEditingController();
+  TextEditingController passwordcontroller= TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +34,15 @@ CustomTxt(txt: "Login", clr: Colors.black, size: 35, fnt_wght:FontWeight.bold),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
 borderRadius: BorderRadius.circular(5),
-                  
+
 
                 ),
       // child: TextField(decoration: InputDecoration(labelText: 'Email',),),
                 child: Column(
                   children: [
-                    CustomTF(labeltxt: 'Email Adress',obs: false,),
+                    CustomTF(labeltxt: 'Email Adress',obs: false,controller: emailcontroller,),
                     SizedBox(height: 5,),
-                    CustomTF(labeltxt: 'Password',obs: true,sficon:Icons.remove_red_eye_outlined,brdr:InputBorder.none,),
+                    CustomTF(labeltxt: 'Password',obs: true,sficon:Icons.remove_red_eye_outlined,brdr:InputBorder.none,controller: passwordcontroller,),
 
 
                   ],
@@ -51,12 +57,17 @@ borderRadius: BorderRadius.circular(5),
                     child: CustomTxt(txt: "Forget Password?", clr: Colors.grey, size: 14, fnt_wght: FontWeight.normal)),
               ),
               SizedBox(height: 30,),
-            CustomBtn(txt: "Sign In", clr:Colors.white, op: (){ Navigator.push(
+            CustomBtn(txt: "Sign In", clr:Colors.white, op: () async { Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>  DubaiWatersports()),
+                  builder: (context) =>  ListingPage()),
 
-            );}, color:Colors.teal[800]),
+            );
+
+              final SharedPreferences sharedpreference = await SharedPreferences.
+              getInstance();sharedpreference.setString('email',emailcontroller.text );
+
+              }, color:Colors.teal[800]),
               SizedBox(height: 30,),
               // Divider(thickness: 1),
               Row(children: [

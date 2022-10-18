@@ -4,12 +4,12 @@ class CustomTF extends StatelessWidget {
 
   @override
   CustomTF({Key? key,required this.labeltxt, this.hintxt,this.obs,this.ochng
- ,this.icon,this.sficon,this.brdr,this.eabrdr,this.erorbrdr,this.fbrdr,this.disablebrdr}) : super(key: key);
+ ,this.icon,this.sficon,this.brdr,this.eabrdr,this.erorbrdr,this.fbrdr,this.disablebrdr,this.controller}) : super(key: key);
   final labeltxt;
   final hintxt;
   final obs;
   final ochng;
-
+final controller;
   final sficon;
   final icon;
   final brdr;
@@ -21,6 +21,7 @@ class CustomTF extends StatelessWidget {
   Widget build(BuildContext context) {
     // String emial='', password='';
     return TextFormField(
+      controller: controller,
       onChanged: ochng,
       obscureText: obs,
       decoration: InputDecoration(
